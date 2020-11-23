@@ -1,20 +1,21 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CardsController } from './cards/controllers/cards.controller';
-import { CardsService } from './cards/services/cards.service';
+import { CardsController } from './controllers/cards.controller';
+import { CardsService } from './services/cards.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CardsEntity } from './cards/entitis/cards.entity';
-import { CardsRepository } from './cards/reposetoryes/cards.reposetory';
-import { UsersEntity } from './cards/entitis/users.enttity';
-import { CartEntity } from './cards/entitis/cart.entity';
-import { UsersController } from './cards/controllers/users.controller';
-import { UsersService } from './cards/services/users.service';
-import { UsersReposetory } from './cards/reposetoryes/users.reposetory';
-import { CartsController } from './cards/controllers/carts.controller';
-import { CartsService } from './cards/services/carts.service';
-import { CartsRepository } from './cards/reposetoryes/carts.reposetory';
+import { CardsEntity } from './entitis/cards.entity';
+import { CardsRepository } from './reposetoryes/cards.reposetory';
+import { UsersEntity } from './entitis/users.enttity';
+import { CartEntity } from './entitis/cart.entity';
+import { UsersController } from './controllers/users.controller';
+import { UsersService } from './services/users.service';
+import { UsersReposetory } from './reposetoryes/users.reposetory';
+import { CartsController } from './controllers/carts.controller';
+import { CartsService } from './services/carts.service';
+import { CartsRepository } from './reposetoryes/carts.reposetory';
 import { JwtModule } from '@nestjs/jwt';
+import { AuthService } from './auth/auth.service';
 @Module({
   imports: [ TypeOrmModule.forRoot({
     type: 'postgres',
@@ -35,6 +36,6 @@ import { JwtModule } from '@nestjs/jwt';
   }),],
 
   controllers: [AppController, CardsController, UsersController, CartsController],
-  providers: [AppService, CardsService, UsersService, CartsService],
+  providers: [AppService, CardsService, UsersService, CartsService, AuthService],
 })
-export class AppModule {}
+export class AppModule { }

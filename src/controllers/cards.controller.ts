@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, ValidationPipe, Patch, Param } from '@nestjs/common';
 import { CardsService } from '../services/cards.service';
-import { CreateCardDTO } from '../dto/create-card.dto';
+import { CreateCardDTO } from '../DTO/create-card.dto';
 import { CardsEntity } from '../entitis/cards.entity';
 
 

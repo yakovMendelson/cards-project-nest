@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CardsRepository } from '../reposetoryes/cards.reposetory';
 import { CardsEntity } from '../entitis/cards.entity';
-import { CreateCardDTO } from '../dto/create-card.dto';
+import { CreateCardDTO } from '../DTO/create-card.dto';
 import { promises } from 'dns';
 
 @Injectable()
