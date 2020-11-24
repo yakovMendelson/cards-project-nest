@@ -15,25 +15,25 @@ export class UsersController {
         return products;
     }
 
-    @Post('login')
-    @UseGuards(AuthGuard)
-    public async login(@Body() createUserDto: CreateUserDTO) {
-        const product = await this.usersData.createUser(createUserDto); 
-        return product;
-    }
+    // @Post('login')
+    // @UseGuards(AuthGuard)
+    // public async login(@Body() createUserDto: CreateUserDTO) {
+    //     const product = await this.usersData.createUser(createUserDto); 
+    //     return product;
+    // }
     
     @Post('sign-up')
     public async createtUser(@Body() createUserDto: CreateUserDTO) {
         const user = await this.usersData.createUser(createUserDto); 
-        this.usersData.setCurrentUser();
-        return user;
+        let token =await this.userToken.authenticate(createUserDto['firstname'], createUserDto['email']);
+        return {...user,token};
     }
 
 
-    @Post('authenticate')
-    async getToken(@Body() body: object) {
-        let token =await this.userToken.authenticate(body['firstname'], body['email']);
-        this.usersData.setToken(token);
-        return {token}
-    }
+    // @Post('login')
+    // async getUserByToken(@Body() body: object) {
+    //     let token =await this.userToken.authenticate(body['firstname'], body['email']);
+    //     let user=await this.usersData.getCurrentUser(token);
+    //     return {...user,token}
+    // }
 }
