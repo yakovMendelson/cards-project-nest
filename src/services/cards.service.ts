@@ -31,7 +31,6 @@ export class CardsService {
     public async editCard(
         productId: number,
         createProductDto: CreateCardDTO,
-        userId: number
     ):Promise<CardsEntity> {
         await this.cardsRepository.update({ id: productId }, { ...createProductDto });
         return this.cardsRepository.findOne(productId)

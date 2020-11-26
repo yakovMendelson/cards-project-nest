@@ -23,16 +23,14 @@ export class CardsController {
 
 
 
-    @Patch('/edit/:productId/:userId')
+    @Patch('/edit/:productId')
     public async editPro(
         @Body(ValidationPipe) createCardDto: CreateCardDTO,
-        @Param('productId') cardId: number,
-        @Param('userId') userId: number,
+        @Param('productId') cardId: number
     ):Promise<CardsEntity>  {
         const card = await this.cardsData.editCard(
             cardId,
-            createCardDto,
-            userId
+            createCardDto
         );
         return card
     }
