@@ -12,7 +12,7 @@ constructor(@InjectRepository(CardsRepository)  private useSER:UsersReposetory){
     super();
 }
     public async createCard(createCardDto: CreateCardDTO): Promise<CardsEntity> {
-        const { location, model, price,imagePath,shortDetails ,category, amount} = createCardDto;
+        const { location, model, price,imagePath,shortDetails ,category} = createCardDto;
         const card = new CardsEntity();
         card.location = location;
         card.model = model;
@@ -20,7 +20,7 @@ constructor(@InjectRepository(CardsRepository)  private useSER:UsersReposetory){
         card.imagePath = imagePath;
         card.shortDetails = shortDetails;
         card.category =category;
-        card.amount = amount;
+        // card.amount = amount;
         await card.save();
         return card;
     }

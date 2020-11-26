@@ -24,8 +24,8 @@ export class CardsEntity extends BaseEntity {
     @Column()
     category: string;
 
-    @Column()
-    amount: number;
+    // @Column()
+    // amount: number;
 
 
     // @ManyToMany(type => UsersEntity, user => user.cards)

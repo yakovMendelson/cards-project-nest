@@ -20,6 +20,10 @@ export class UsersEntity extends BaseEntity {
     
     @Column()
     password: string;
+    
+
+    @Column({ nullable: true })
+    admin?: boolean;
 
 
     

@@ -6,7 +6,7 @@ import { CreateUserDTO } from "../DTO/create-user.dto";
 export class UsersReposetory extends Repository<UsersEntity>{
     public async createUser(createProductDto: CreateUserDTO): Promise<UsersEntity> {
         
-        const { firstname, lastname, email,age,password } = createProductDto;
+        const { firstname, lastname, email,age,password ,admin} = createProductDto;
         const user = new UsersEntity();
         console.log(firstname);
         
@@ -15,6 +15,7 @@ export class UsersReposetory extends Repository<UsersEntity>{
         user.email = email;
         user.age = age;
         user.password = password
+        user.admin=admin
         await user.save();
         return user;
     }

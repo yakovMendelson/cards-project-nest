@@ -18,4 +18,6 @@ export class CreateUserDTO {
 
         @IsString()
         token: string;
+
+        admin?:boolean
 }

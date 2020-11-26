@@ -9,8 +9,8 @@ import { JwtService } from '@nestjs/jwt';
 export class UsersService {
     constructor(@InjectRepository(UsersReposetory) private userRepository: UsersReposetory, private jwt: JwtService) { }
 
-    private currentUser: UsersEntity;
-    private token: string
+    // private currentUser: UsersEntity;
+    // private token: string
     public async createUser(createUserDto: CreateUserDTO) {
         let firstname = createUserDto.firstname
         let email = createUserDto.email
@@ -21,8 +21,12 @@ export class UsersService {
         return this.userRepository.find();
     }
 
-    public getUserById(firstname, email): Promise<UsersEntity> {
+    public getUserByNameEmail(firstname, email): Promise<UsersEntity> {
         return this.userRepository.findOne({ firstname, email });
+    }
+
+    public getUserByCodeEmail(password, email): Promise<UsersEntity> {
+             return this.userRepository.findOne({ password, email });
     }
 
     public async getCurrentUser(token) {
@@ -35,13 +39,15 @@ export class UsersService {
 
         let firstname = verify.firstname;
         let email = verify.email;
+        console.log(firstname,email,verify);
+        
         let user = await this.userRepository.findOne({ firstname, email })
         return user
     }
     // Check if the user exists
-    private async CheckTheUser(firstname, email){
-        let user = await this.getUserById(firstname, email);
+    private async CheckTheUser(firstname, email) {
+        let user = await this.getUserByNameEmail(firstname, email);
         if (user)
-            throw new ForbiddenException("The email already exists in the system" );
+            throw new ForbiddenException("The email already exists in the system");
     }
 }

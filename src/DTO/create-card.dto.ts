@@ -22,6 +22,6 @@ export class CreateCardDTO {
         @IsString()
         category: string
         
-        @IsInt()
-        amount: number
+        // @IsInt()
+        // amount: number
 }

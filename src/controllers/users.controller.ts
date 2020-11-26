@@ -1,4 +1,4 @@
-import { Controller, Get, ValidationPipe, Body, Post, Redirect, UseGuards } from '@nestjs/common';
+import { Controller, Get, ValidationPipe, Body, Post, Redirect, UseGuards, ForbiddenException } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { UsersEntity } from '../entitis/users.enttity';
 import { CreateUserDTO } from '../DTO/create-user.dto';
@@ -15,11 +15,11 @@ export class UsersController {
         return products;
     }
 
-    // @Post('login')
+    // @Post('auth')
     // @UseGuards(AuthGuard)
-    // public async login(@Body() createUserDto: CreateUserDTO) {
-    //     const product = await this.usersData.createUser(createUserDto); 
-    //     return product;
+    // public async login(@Body() token:any) {
+    //     const user = UsersService
+    //     return user;
     // }
     
     @Post('sign-up')
@@ -30,10 +30,16 @@ export class UsersController {
     }
 
 
-    // @Post('login')
-    // async getUserByToken(@Body() body: object) {
-    //     let token =await this.userToken.authenticate(body['firstname'], body['email']);
-    //     let user=await this.usersData.getCurrentUser(token);
-    //     return {...user,token}
-    // }
+    @Post('login')
+    async getUserByToken(@Body() body: object) {
+        let user = await this.userToken.chakeUser(body['password'], body['email']);
+        
+        
+        if(user){
+            let token = await this.userToken.authenticate(user['firstname'], user['email']);
+         return {...user,token}
+    }
+        else 
+          throw new ForbiddenException('invalid')
+    }
 }

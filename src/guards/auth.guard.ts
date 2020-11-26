@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, Injectable, ExecutionContext } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { UsersService } from 'src/services/users.service';
 import { JwtService } from '@nestjs/jwt';
@@ -12,7 +12,7 @@ canActivate(
   ): boolean | Promise<boolean> | Observable<boolean> {
    let token= context.switchToHttp().getRequest().body.token;
    try {
-     this.jwt.verify(token);
+    this.jwt.verify(token);
      return true;
    } catch (error) {
      return false

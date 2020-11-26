@@ -26,7 +26,7 @@ import { AuthService } from './auth/auth.service';
     database: 'cards',
     entities: [CardsEntity,UsersEntity,CartEntity],
     synchronize: true,
-    logging: true,
+    // logging: true,
     keepConnectionAlive: true
   }),
   TypeOrmModule.forFeature([CardsRepository,UsersReposetory,CartsRepository]),
