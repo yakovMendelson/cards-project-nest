@@ -1,4 +1,4 @@
-import { Controller, Get, ValidationPipe, Body, Post, Redirect, UseGuards, ForbiddenException } from '@nestjs/common';
+import { Controller, Get, ValidationPipe, Body, Post, Redirect, UseGuards, ForbiddenException, Delete, Param } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { UsersEntity } from '../entitis/users.enttity';
 import { CreateUserDTO } from '../DTO/create-user.dto';
@@ -42,4 +42,6 @@ export class UsersController {
         else 
           throw new ForbiddenException('invalid')
     }
+    
+    
 }

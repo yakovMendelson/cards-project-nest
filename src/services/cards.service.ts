@@ -38,8 +38,8 @@ export class CardsService {
     }
 
 
-    public async deleteCard(cardId: number): Promise<void> {
-        await this.cardsRepository.delete(cardId);
+    public deleteCard(cardId: number) {
+        this.cardsRepository.delete(cardId);
     }
 }
 
