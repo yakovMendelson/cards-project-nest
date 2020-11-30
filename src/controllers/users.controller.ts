@@ -54,15 +54,15 @@ export class UsersController {
             service: 'gmail',
             auth: {
                 user: 'dassitoubin@gmail.com',
-                pass: ''
+                pass: '313122673'
             }
         });
 
         var mailOptions = {
             from: 'dassitoubin@gmail.com',
-            to: body.email,
+            to: 'dassitoubin@gmail.com',
             subject: body.subject,
-            text: body.text
+            text: body.text+'\nכתובת אימייל של הלקוח\n'+body.email
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
