@@ -32,7 +32,7 @@ import { AuthService } from './auth/auth.service';
   TypeOrmModule.forFeature([CardsRepository,UsersReposetory,CartsRepository]),
   JwtModule.register({
     secret: 'yakov',
-    signOptions: { expiresIn: '60s' },
+    signOptions: { expiresIn: '60000s' },
   }),],
 
   controllers: [AppController, CardsController, UsersController, CartsController],

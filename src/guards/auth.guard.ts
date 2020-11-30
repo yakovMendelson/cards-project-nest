@@ -10,11 +10,13 @@ export class AuthGuard implements CanActivate {
 canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-   let token= context.switchToHttp().getRequest().body.token;
+   let token= context.switchToHttp().getRequest().headers.token;
    try {
     this.jwt.verify(token);
      return true;
    } catch (error) {
+     
+     
      return false
    }
    

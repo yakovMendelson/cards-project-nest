@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, ValidationPipe, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, ValidationPipe, Patch, Param, Delete ,Headers, UseGuards} from '@nestjs/common';
 import { CardsService } from '../services/cards.service';
 import { CreateCardDTO } from '../DTO/create-card.dto';
 import { CardsEntity } from '../entitis/cards.entity';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { AdminGuard } from 'src/guards/admin.guard';
 
 
 @Controller('cards')
@@ -13,6 +15,7 @@ export class CardsController {
         return products;
     }
 
+    @UseGuards(AuthGuard,AdminGuard)
     @Post('create')
     public async createProduct(
         @Body(ValidationPipe) createProductDto: CreateCardDTO,
@@ -22,7 +25,7 @@ export class CardsController {
     }
 
 
-
+    @UseGuards(AuthGuard,AdminGuard)
     @Patch('/edit/:productId')
     public async editPro(
         @Body(ValidationPipe) createCardDto: CreateCardDTO,
@@ -34,11 +37,15 @@ export class CardsController {
         );
         return card
     }
+    
+    @UseGuards(AuthGuard,AdminGuard)
     @Delete('/delete/:cardId')
     public async deletePro(@Param('cardId') cardId: number) {
 
       this.cardsData.deleteCard(cardId);
        
     }
+
+    
 
 }
