@@ -54,7 +54,7 @@ export class UsersController {
             service: 'gmail',
             auth: {
                 user: 'dassitoubin@gmail.com',
-                pass: '313122673'
+                pass: ''
             }
         });
 
